@@ -1,0 +1,28 @@
+{
+  "name": "marche-du-monde",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "esbuild --watch --bundle --minify src/index.ts --outdir=dist --target=esnext --format=esm --platform=browser",
+    "serve": "http-server --cors --port 40404",
+    "start": "concurrently -n 'watch,serve' 'npm run watch' 'npm run serve'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lm-maxfab/marche-du-monde.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lm-maxfab/marche-du-monde/issues"
+  },
+  "homepage": "https://github.com/lm-maxfab/marche-du-monde#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.1",
+    "esbuild": "^0.19.4",
+    "http-server": "^14.1.1",
+    "typescript": "^5.2.2"
+  },
+  "type": "module"
+}
