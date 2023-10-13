@@ -9,7 +9,7 @@ export default function replaceInNode (node: Node, replacer: (input: string) => 
   if (node.nodeType === Node.ELEMENT_NODE) {
     const element = node as Element
     const children = [...element.childNodes]
-    const replacedChildren = children.map(node => replaceInNode(node, replacer))
+    const replacedChildren = children.map(node => replaceInNode(node, replacer)/* recursion 😎 */)
     element.replaceChildren(...replacedChildren)
     return element
   }

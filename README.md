@@ -24,25 +24,25 @@
 - Do what you want to do inside `src/`
 - `import { anything } from dist/index.js` inside your test page and testanything you want
 
-## Structure
+## File structure
 
-### Pour info :
-Je laisse des `/* [WIP] */` à tous les endroits où il y a encore des trucs à faire, histoire de pas oublier des trucs en chemin, et si on travaille à plusieurs dans ce projet ça peut permettre à chacun de savoir ce qui reste à faire.
+### Pour info
+Je laisse des `/* [WIP] */` à tous les endroits où il y a encore des choses à faire, histoire de pas en oublier en chemin, et si on travaille à plusieurs dans ce projet ça peut permettre à chacun de savoir ce qui reste à faire.
 
 ### `src/index.ts`
-- Exporte la fonction principale de la lib : nouvelleMarcheDuMonde (ou nouveau nom à trouver)
-- Exporte toutes les "sous-fonctions" utilisées par nouvelleMarcheDuMonde
+- Exporte la fonction principale de la lib : `nouvelleMarcheDuMonde` (ou nouveau nom à trouver)
+- Exporte toutes les "sous-fonctions" utilisées par `nouvelleMarcheDuMonde`
 
-Le détail de comment fonctionne nouvelleMarcheDuMonde :
-- reçoit une chaine de caractères en input
+Le détail de comment fonctionne `nouvelleMarcheDuMonde` :
+- reçoit une chaine de caractères et un objet d'options en input
 - met à l'abri les chaines de caractères échappées à l'intérieur (`{ escape } from src/escape/index.ts`)
-- parse cet input comme du markdown (donc retourne un élément HTML) (`src/parse-markdown/index.ts`)
+- parse cet input "tokenisé" comme du markdown (donc retourne un élément HTML) (`src/parse-markdown/index.ts`)
 - passe dans chaque branche de cet élément HTML (`src/replace-in-node/index.ts`), et :
   - remplace les textes un par un, en fonction d'un objet d'options passé en paramètres (`src/replacers/index.ts`)
   - remet à leur place les bouts de texte échappés (`{ unescape } from src/escape/index.ts`)
 - en fonction de ce qui est demandé dans l'objet d'options, retourne le tout sous forme de :
   - texte ([`Node.textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)),
-  - ou de [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList) (on ne retourne pas l'élément qu'a produit parseMarkdown, mais ses enfants, parce qu'un input "texte simple" serait retourné en tant que `<div>texte simple</div>`)
+  - ou de [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList) (on ne retourne pas l'élément parent qu'a produit parseMarkdown, mais ses enfants, parce qu'un input "texte simple" serait retourné en tant que `<div>texte simple</div>`)
 
 ### `src/escape/index.ts`
 
@@ -76,4 +76,4 @@ Fonction qui reçoit un objet [`Node`](https://developer.mozilla.org/en-US/docs/
 
 ### `src/replacers/index.ts`
 
-Fonction qui prend un input texte et un objet d'options, et applique une série de remplacements dans l'input, en fonction de si l'objet d'options l'autorise ou non.
+Fonction qui prend un input texte et un objet d'options, et applique une série de remplacements dans l'input, en fonction de si l'objet d'options l'autorise ou non. La liste des fonctions de remplacements (guillemets français, anglais, allemands, insécables en fonction de la ponctuation, formattage des nombres, etc...) est à construire, chacune est indépendante et elles sont toutes assemblées et séquencées par `replacer`, exporté par `src/replacers/index.ts`
