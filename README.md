@@ -22,7 +22,7 @@
 - Create a new html page inside `tests/`, create a `<script type="module"></script>`
 - `npm start` and go to `http://localhost:40404/tests/<your-page>.html`
 - Do what you want to do inside `src/`
-- `import { anything } from dist/index.js` inside your test page and testanything you want
+- `import { anything } from dist/index.js` inside your test page and test anything you want
 
 ## File structure
 
@@ -42,7 +42,7 @@ Le détail de comment fonctionne `nouvelleMarcheDuMonde` :
   - remet à leur place les bouts de texte échappés (`{ unescape } from src/escape/index.ts`)
 - en fonction de ce qui est demandé dans l'objet d'options, retourne le tout sous forme de :
   - texte ([`Node.textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)),
-  - ou de [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList) (on ne retourne pas l'élément parent qu'a produit parseMarkdown, mais ses enfants, parce qu'un input "texte simple" serait retourné en tant que `<div>texte simple</div>`)
+  - ou de [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList) (on ne retourne pas l'élément parent qu'a produit parseMarkdown, mais ses enfants, parce qu'un input `"texte simple"` serait retourné en tant que `<div>texte simple</div>`)
 
 ### `src/escape/index.ts`
 
@@ -60,7 +60,7 @@ et pour les tokens de remplacement, peut-être quelque chose de plus farfelu que
 **`unescape` :**
 ```
 input = ('un texte ESCAPED-0 des zones ESCAPED-1', ['avec', 'protégées'])
-output = 'un texte \avec\ des zones \protégées\'
+output = 'un texte avec des zones protégées'
 ```
 
 ### `src/parse-markdown/index.ts`
