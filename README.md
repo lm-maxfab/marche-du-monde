@@ -70,9 +70,9 @@ Librairie à trouver, ou à faire maison, à voir
 ### `src/replace-in-node/index.ts`
 
 Fonction qui reçoit un objet [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node), et :
-  - si node.nodeType === Node.TEXT_NODE : remplace et retourne son contenu texte
-  - si node.nodeType === Node.ELEMENT_NODE : la fonction s'appelle elle même sur tous les Node enfants
-  - dans tous les autres cas : retourne le Node tel quel
+  - si `node.nodeType === Node.TEXT_NODE` : remplace et retourne son contenu texte
+  - si `node.nodeType === Node.ELEMENT_NODE` : la fonction s'appelle elle même sur tous les Node enfants
+  - dans tous les autres cas, retourne l'input tel quel
 
 ### `src/replacers/index.ts`
 
